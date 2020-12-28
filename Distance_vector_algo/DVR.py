@@ -12,27 +12,17 @@ class Network:
         for i in range(self.n):
             print("{0}\t{1}".format(chr(ord('A')+i), dist[i]))
 
-    # The main function that finds shortest distances from src to
-    # all other vertices using Bellman-Ford algorithm. The function
-    # also detects negative weight cycle
     def algor(self, src):
-
-        # Step 1: Initialize distances from src to all other vertices
 
         dist = [99] * self.n
         dist[src] = 0
 
-        # Step 2: Relax all edges |V| - 1 times. A simple shortest
-        # path from src to any other vertex can have at-most |V| - 1
-        # edges
         for _ in range(self.n - 1):
-            # Update dist value and parent index of the adjacent vertices of
-            # the picked vertex. Consider only those vertices which are still in
-            # queue
+           
             for u, v, w in self.matrix:
                 if dist[u] != 99 and dist[u] + w < dist[v]:
                     dist[v] = dist[u] + w
-        # print all distance
+     
         self.printtable(dist, src)
 
 
